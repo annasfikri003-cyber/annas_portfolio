@@ -7,7 +7,7 @@ function Cover({ project }) {
       <img
         src={project.image}
         alt={`Screenshot of ${project.title}`}
-        className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="h-44 w-full object-cover"
       />
     );
   }

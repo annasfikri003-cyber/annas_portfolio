@@ -84,7 +84,7 @@ export const projects = [
     description:
       "Turned scattered PowerPoint SOPs and FAQs into a searchable web knowledge base with categories, keyword search, bookmarks and an admin dashboard. Engineers now find procedures themselves instead of interrupting senior staff.",
     tags: ["PHP", "phpMyAdmin", "Search", "Admin dashboard"],
-    image: "",
+    image: "/images/sopsphere.png",
     link: "",
   },
   {
@@ -93,7 +93,7 @@ export const projects = [
     description:
       "A mobile-friendly booking app with a guided flow, buffer-time management and anti-double-booking logic, built to end scheduling confusion from walk-ins and phone bookings.",
     tags: ["Glide", "No-code", "Scheduling"],
-    image: "",
+    image: "/images/sekurix-bookings.png",
     link: "",
   },
   {
@@ -102,7 +102,7 @@ export const projects = [
     description:
       "An online service request form for customers, including government clients, that captures what engineers need and promises a 24 business-hour response.",
     tags: ["WordPress", "Forms", "Service desk"],
-    image: "",
+    image: "/images/computer-service-request.png",
     link: "",
   },
   {
@@ -111,7 +111,7 @@ export const projects = [
     description:
       "Kept the company's listing accurate, monitored reviews and made it easier for new customers to find and contact the shop. The sales team reported more and better inbound enquiries.",
     tags: ["Local SEO", "Reviews", "Marketing"],
-    image: "",
+    image: "/images/google-business-profile.png",
     link: "",
   },
 ];
