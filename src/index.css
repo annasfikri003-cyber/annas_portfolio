@@ -1,0 +1,269 @@
+@config "../tailwind.config.js";
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --background: 44 54% 92%;
+  --foreground: 270 44% 17%;
+  --card: 45 54% 97%;
+  --primary: 333 94% 52%;
+  --accent: 263 82% 57%;
+  --muted: 267 19% 39%;
+  --border: 270 24% 79%;
+  --mint: 164 77% 34%;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: 258 47% 9%;
+  --foreground: 42 75% 91%;
+  --card: 257 39% 13%;
+  --primary: 327 100% 66%;
+  --accent: 163 75% 63%;
+  --muted: 254 18% 70%;
+  --border: 257 27% 29%;
+  --mint: 163 75% 63%;
+}
+
+@theme inline {
+  --font-display: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+  --color-bg: hsl(var(--background));
+  --color-fg: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-primary: hsl(var(--primary));
+  --color-accent: hsl(var(--accent));
+  --color-muted: hsl(var(--muted));
+  --color-border: hsl(var(--border));
+  --color-line: hsl(var(--border));
+  --color-warm: hsl(var(--primary));
+}
+
+@theme {
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-meteor: meteor 6s linear infinite;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.9; }
+  }
+  @keyframes meteor {
+    0% { transform: rotate(215deg) translateX(0); opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: rotate(215deg) translateX(-600px); opacity: 0; }
+  }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    position: relative;
+    isolation: isolate;
+    min-width: 320px;
+    background-color: hsl(var(--background));
+    background-image: radial-gradient(ellipse at 50% 8%, hsl(var(--primary) / 0.08), transparent 34rem);
+    color: hsl(var(--foreground));
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  h1, h2, h3 {
+    font-family: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--accent));
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--background));
+  }
+
+  section { scroll-margin-top: 5rem; }
+}
+
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+body::before {
+  z-index: 0;
+  inset: auto 0 0;
+  height: 52vh;
+  background-image:
+    linear-gradient(to bottom, transparent, hsl(var(--primary) / 0.38)),
+    repeating-linear-gradient(90deg, hsl(var(--primary) / 0.62) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(0deg, hsl(var(--primary) / 0.52) 0 1px, transparent 1px 42px);
+  transform: perspective(240px) rotateX(58deg) scale(1.8);
+  transform-origin: center top;
+  -webkit-mask-image: linear-gradient(to top, black 5%, transparent 92%);
+  mask-image: linear-gradient(to top, black 5%, transparent 92%);
+}
+
+body::after {
+  z-index: 2;
+  opacity: 0.045;
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, hsl(var(--foreground)) 3px 4px);
+  mix-blend-mode: screen;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+#hero > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#hero h1 {
+  max-width: 100%;
+  background-image: linear-gradient(105deg, hsl(var(--foreground)) 4%, hsl(var(--primary)) 52%, hsl(var(--mint)) 96%);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+#hero > div > p:last-of-type { margin-inline: auto; }
+#hero > div > div { justify-content: center; }
+
+h2 {
+  width: fit-content;
+  max-width: 100%;
+}
+
+h2::after {
+  display: block;
+  width: 5rem;
+  height: 5px;
+  margin: 0.8rem auto 0;
+  background: repeating-linear-gradient(90deg, hsl(var(--primary)) 0 10px, transparent 10px 14px, hsl(var(--mint)) 14px 24px, transparent 24px 28px);
+  content: "";
+}
+
+header {
+  border-bottom: 2px solid hsl(var(--primary));
+  background-color: hsl(var(--background) / 0.86);
+  backdrop-filter: blur(12px);
+}
+
+header nav a:not(:first-child),
+header nav > div a,
+header > div a {
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+
+#projects article,
+#skills ul > li {
+  border: 2px solid hsl(var(--primary));
+  border-radius: 6px;
+  background-color: hsl(var(--card));
+  box-shadow: 6px 6px 0 hsl(var(--accent));
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+#projects article:hover,
+#skills ul > li:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 hsl(var(--accent));
+}
+
+.rounded-full:is(a, button):not(header button) {
+  border: 2px solid hsl(var(--foreground));
+  box-shadow: 4px 4px 0 hsl(var(--accent));
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-weight: 700;
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+
+.rounded-full:is(a, button):not(header button):hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 hsl(var(--accent));
+}
+
+.rounded-full:is(a, button):not(header button):active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+#projects article li.rounded-full {
+  border: 1px solid hsl(var(--mint));
+  color: hsl(var(--mint));
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+
+input,
+textarea {
+  border: 2px solid hsl(var(--border)) !important;
+  border-radius: 4px !important;
+  background-color: hsl(var(--card));
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+
+input:focus,
+textarea:focus { border-color: hsl(var(--primary)) !important; }
+
+* {
+  scrollbar-color: hsl(var(--primary)) hsl(var(--background));
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar { width: 10px; }
+*::-webkit-scrollbar-track { background: hsl(var(--background)); }
+*::-webkit-scrollbar-thumb {
+  border: 2px solid hsl(var(--background));
+  border-radius: 99px;
+  background: hsl(var(--primary));
+}
+
+.animate-twinkle {
+  background-color: hsl(var(--foreground));
+  box-shadow: 0 0 8px hsl(var(--foreground) / 0.7);
+}
+
+.animate-meteor {
+  height: 2px;
+  background-image: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--mint) / 0.75), transparent);
+  filter: drop-shadow(0 0 5px hsl(var(--primary) / 0.9));
+}
+
+@media (max-width: 480px) {
+  #hero h1 { overflow-wrap: anywhere; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+  #projects article:hover,
+  #skills ul > li:hover,
+  .rounded-full:is(a, button):not(header button):hover,
+  .rounded-full:is(a, button):not(header button):active {
+    transform: none;
+  }
+}
